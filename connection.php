@@ -1,7 +1,7 @@
 <?php
     include 'artikl.php';
 
-    $oConnParametar = new Configuration("127.0.0.1","employees","root","");
+    $oConnParametar = new Configuration("127.0.0.1","artikli","root","");
     //var_dump($oConnParametar);
     try
     {
