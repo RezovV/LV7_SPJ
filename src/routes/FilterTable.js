@@ -5,7 +5,7 @@ import SearchTable from './SearchTable'
 function FilterTable() {
     const [post, setPost] = useState([])
     const [query, setQuery] = useState("");
-    const readUrl = "http://localhost/react-lv7-php/read.php";
+    const readUrl = "http://localhost/read.php";
     useEffect(() => {
         axios.get(readUrl).then((response) => {
             setPost(response.data)
