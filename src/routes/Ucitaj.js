@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 import {Link, Outlet} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const readUrl = "http://localhost/react-lv7-php/read.php";
+const readUrl = "http://localhost/read.php";
 
 function Ucitaj()
 {
@@ -29,7 +29,7 @@ function Ucitaj()
 
     async function deleteConfirm(Id)
     {
-        const deleteUrl ="http://localhost/react-lv7-php/delete.php";
+        const deleteUrl ="http://localhost/delete.php";
         var params = new URLSearchParams();
         params.append('Id', Id);
         axios.post(deleteUrl, params).then(() => {getArtikli()});
