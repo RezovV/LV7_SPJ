@@ -26,7 +26,7 @@ function Edit()
     async function getArtikl(id)
     {
         try{
-            const response = await axios.get(`http://localhost/react-lv7-php/readONE?Id=${id}`)
+            const response = await axios.get(`http://localhost/readONE?Id=${id}`)
             setNaziv(response.data[0].Naziv);
             setId(response.data[0].Id);
             setProizvodac(response.data[0].Proizvodac);
