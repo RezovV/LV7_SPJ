@@ -14,7 +14,7 @@ export default function Dodaj(){
         params.append('Model', m);
         params.append('Cijena', c);
         params.append('Kolicina', k);
-        axios.post("http://localhost/react-lv7-php/add.php",params)
+        axios.post("http://localhost/add.php",params)
         .then((response)=>{navigate("/Ucitaj",{replace: true})});
     };
     const [inputs, setInputs] = useState({});
