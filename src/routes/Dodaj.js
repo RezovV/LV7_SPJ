@@ -1,92 +1,96 @@
-import axios from "axios";
-import {useState} from 'react';
+import axios from 'axios';
+import {useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Dodaj = () => { 
+export default function Dodaj(){
+    const [] = useState({});
+    let navigate = useNavigate();
 
-  const dodajArtikl = (id, n, p, m, c, k) => {
-    var params = new URLSearchParams();
-    params.append('id', id);
-    params.append('naziv', n);
-    params.append('proizvodac', p);
-    params.append('model', m);
-    params.append('cijena', c);
-    params.append('kolicina', k);
-    axios.post("http://localhost:8080/LV7_SPJ/dodaj.php", params)
-      .then((response) => { console.log(response.data); });
-  };
-  const [inputs, setInputs] = useState({});
+    const dodajArtikl= (i,n,p,m,c,k)=>{
+        var params = new URLSearchParams();
+        params.append('Id', i);
+        params.append('Naziv', n);
+        params.append('Proizvodac', p);
+        params.append('Model', m);
+        params.append('Cijena', c);
+        params.append('Kolicina', k);
+        axios.post("http://localhost/react-lv7-php/add.php",params)
+        .then((response)=>{navigate("/Ucitaj",{replace: true})});
+    };
+    const [inputs, setInputs] = useState({});
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    dodajArtikl(inputs.id, inputs.naziv, inputs.proizvodac, inputs.model, inputs.cijena, inputs.kolicina);
-    alert(`${inputs.id} ${inputs.naziv} je dodan`);
-  };
-  const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setInputs(values => ({ ...values, [name]: value }))
-  }
-  return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <label>Unesite ID:
-          <input
-            type="number"
-            name="id"
-            value={inputs.id || ""}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>Unesite naziv:
-          <input
-            type="text"
-            name="naziv"
-            value={inputs.naziv || ""}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>Unesite proizvodaca:
-          <input
-            type="text"
-            name="proizvodac"
-            value={inputs.proizvodac || ""}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>Unesite model:
-          <input
-            type="text"
-            name="model"
-            value={inputs.model || ""}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>Unesite cijenu:
-          <input
-            type="number"
-            name="cijena"
-            value={inputs.cijena || ""}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>Unesite kolicinu:
-          <input
-            type="number"
-            name="kolicina"
-            value={inputs.kolicina || ""}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <button className="btn btn-success">Dodaj</button>
-      </form>
-    </>
-  )
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        dodajArtikl(inputs.Id, inputs.Naziv, inputs.Proizvodac, inputs.Model,inputs.Cijena, inputs.Kolicina);
+        alert(`${inputs.Id} ${inputs.Naziv} je dodan`);
+    };
+    const handleChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs(values => ({...values, [name]: value}))
+    }
+   
+
+
+    return(
+        <>
+        <form onSubmit={handleSubmit}>
+            <label>Unesite Id:
+            <input
+                type="number"
+                name="Id"
+                value={inputs.Id || ""}
+                onChange={handleChange}
+                />
+            </label>
+            <br />
+            <label>Unesite Naziv:
+                <input
+                type="text"
+                name="Naziv"
+                value={inputs.Naziv || ""}
+                onChange={handleChange}
+                />
+            </label>
+            <br />
+            <label>Unesite Proizvodaca:
+                <input
+                type="text"
+                name="Proizvodac"
+                value={inputs.Proizvodac || ""}
+                onChange={handleChange}
+                />
+            </label>
+            <br/>
+            <label>Unesite Model:
+                <input
+                type="text"
+                name="Model"
+                value={inputs.Model || ""}
+                onChange={handleChange}
+                />
+            </label>
+            <br/>
+            <label>Unesite cijenu:
+                <input
+                type="number"
+                name="Cijena"
+                value={inputs.Cijena || ""}
+                onChange={handleChange}
+                />
+            </label>
+            <br/>
+            <label>Unesite kolicinu:
+                <input
+                type="number"
+                name="Kolicina"
+                value={inputs.Kolicina || ""}
+                onChange={handleChange}
+                />
+            </label>
+            <br/>
+            <button className="btn btn-success">Dodaj</button>
+        </form>
+        </>
+    );
 }
-
-export default Dodaj
